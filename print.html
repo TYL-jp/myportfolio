@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Tin Ye Lin — Portfolio</title>
+<style>
+  :root {
+    --ink: #10171B;
+    --paper: #F3F5F1;
+    --paper-dim: #E8EBE5;
+    --teal: #1D6B70;
+    --amber: #E2954D;
+    --amber-soft: #F2C088;
+    --text-main: #1A2124;
+    --text-muted: #5B6670;
+    --on-ink: #F3F5F1;
+    --on-ink-muted: #9FB0B3;
+    --line: rgba(26,33,36,0.14);
+    --line-on-ink: rgba(243,245,241,0.16);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  html, body { font-family: "Noto Sans CJK JP", sans-serif; color: var(--text-main); }
+  a { color: inherit; text-decoration: none; }
+
+  .page {
+    width: 210mm;
+    height: 296mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .page:last-child { page-break-after: auto; }
+  .pad { padding: 16mm 18mm; }
+
+  .serif { font-family: "Noto Serif CJK JP", serif; }
+  .mono { font-family: "Noto Sans Mono", "DejaVu Sans Mono", monospace; }
+
+  .eyebrow {
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 5mm;
+  }
+  .eyebrow::before { content:""; width: 18px; height: 1px; background: var(--teal); }
+  .on-ink .eyebrow { color: var(--amber-soft); }
+  .on-ink .eyebrow::before { background: var(--amber-soft); }
+
+  /* ============ COVER PAGE ============ */
+  .cover {
+    background: var(--ink);
+    color: var(--on-ink);
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-top { padding: 24mm 18mm 0; flex: 1; }
+  .cover-kicker {
+    font-family: "Noto Sans Mono", monospace;
+    color: var(--amber-soft);
+    font-size: 10pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 10mm;
+  }
+  .cover h1 {
+    font-family: "Noto Serif CJK JP", serif;
+    font-size: 42pt;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 3mm;
+  }
+  .cover .reading { color: var(--on-ink-muted); font-size: 12pt; margin-bottom: 12mm; }
+  .cover .tagline { font-size: 12pt; line-height: 1.9; color: var(--on-ink-muted); max-width: 130mm; }
+  .cover .tagline strong { color: var(--on-ink); }
+
+  .cover-photo {
+    position: absolute;
+    right: 18mm;
+    top: 24mm;
+    width: 42mm;
+    height: 56mm;
+    object-fit: cover;
+    border-radius: 2mm;
+    border: 1px solid var(--line-on-ink);
+  }
+
+  .cover-links {
+    background: rgba(243,245,241,0.05);
+    border-top: 1px solid var(--line-on-ink);
+    padding: 10mm 18mm;
+  }
+  .cover-links .label {
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 8pt; letter-spacing: 0.12em;
+    color: var(--amber-soft); text-transform: uppercase;
+    margin-bottom: 4mm;
+  }
+  .link-row { display: flex; gap: 4mm; margin-bottom: 2.5mm; align-items: baseline; }
+  .link-row .k { width: 34mm; font-size: 9pt; color: var(--on-ink-muted); flex-shrink: 0; }
+  .link-row a { font-family: "Noto Sans Mono", monospace; font-size: 9.5pt; color: var(--amber-soft); }
+
+  .cover-wave { position: absolute; bottom: 58mm; left: 0; right: 0; opacity: 0.4; }
+
+  /* ============ SECTION PAGES ============ */
+  h2.sec {
+    font-family: "Noto Serif CJK JP", serif;
+    font-size: 20pt;
+    font-weight: 700;
+    margin-bottom: 3mm;
+  }
+  .lead { color: var(--text-muted); font-size: 10pt; margin-bottom: 8mm; }
+
+  .about-flex { display: flex; gap: 8mm; }
+  .about-copy { flex: 1; font-size: 9.5pt; line-height: 1.85; color: var(--text-muted); }
+  .about-copy p { margin-bottom: 4mm; }
+  .about-copy strong { color: var(--text-main); }
+
+  .timeline { border-top: 1px solid var(--line); margin-top: 4mm; }
+  .tl-row { display: flex; gap: 6mm; padding: 3.2mm 0; border-bottom: 1px solid var(--line); }
+  .tl-date { width: 26mm; flex-shrink: 0; font-family: "Noto Sans Mono", monospace; font-size: 8.5pt; color: var(--teal); padding-top: 0.5mm; }
+  .tl-title { font-weight: 700; font-size: 9.5pt; margin-bottom: 0.5mm; }
+  .tl-sub { font-size: 8.5pt; color: var(--text-muted); }
+
+  .skills-band {
+    background: var(--ink);
+    color: var(--on-ink);
+    margin: 8mm -18mm 0;
+    padding: 8mm 18mm;
+  }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 6mm 10mm; }
+  .skill-group { min-width: 50mm; }
+  .skill-group h3 {
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 8.5pt; font-weight: 500;
+    color: var(--amber-soft);
+    margin-bottom: 2.5mm; letter-spacing: 0.03em;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.6mm; max-width: 76mm; }
+  .tag {
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 7.5pt;
+    padding: 1.1mm 2.6mm;
+    border: 1px solid var(--line-on-ink);
+    border-radius: 1mm;
+    color: var(--on-ink-muted);
+  }
+
+  /* ============ PROJECT ============ */
+  .project { padding: 5mm 0 6mm; border-bottom: 1px solid var(--line); }
+  .project:last-child { border-bottom: none; }
+  .p-tag {
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 7.5pt; color: var(--teal);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: block; margin-bottom: 2mm;
+  }
+  .project h3 { font-family: "Noto Serif CJK JP", serif; font-size: 14pt; margin-bottom: 2.5mm; }
+  .project .desc { font-size: 9pt; color: var(--text-muted); line-height: 1.75; margin-bottom: 3mm; }
+  .project .desc strong { color: var(--text-main); }
+  .hl { list-style: none; margin-bottom: 3mm; }
+  .hl li { font-size: 8.5pt; line-height: 1.7; padding-left: 4mm; position: relative; margin-bottom: 1.2mm; }
+  .hl li::before { content:""; position: absolute; left: 0; top: 2.2mm; width: 1.6mm; height: 1.6mm; background: var(--amber); border-radius: 50%; }
+  .chips { display: flex; flex-wrap: wrap; gap: 1.6mm; margin-bottom: 3mm; }
+  .chip { font-family: "Noto Sans Mono", monospace; font-size: 7.5pt; padding: 1.1mm 2.6mm; background: var(--paper-dim); border-radius: 1mm; color: var(--text-muted); }
+  .p-links { display: flex; flex-wrap: wrap; gap: 2.5mm; }
+  .p-links a {
+    font-size: 8.5pt; font-weight: 700;
+    padding: 1.8mm 4mm; border: 1px solid var(--line);
+    border-radius: 1mm; color: var(--text-main);
+  }
+  .p-links a.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .p-links a .u { font-family: "Noto Sans Mono", monospace; font-weight: 400; font-size: 7pt; color: var(--text-muted); }
+  .p-links a.primary .u { color: var(--on-ink-muted); }
+
+  .proj-flex { display: flex; gap: 7mm; }
+  .proj-main { flex: 1.25; }
+  .proj-side { flex: 1; }
+
+  .diagram-card { background: #1B262C; border-radius: 2mm; padding: 5mm; }
+  .diagram-caption { font-family: "Noto Sans Mono", monospace; font-size: 6.5pt; color: var(--on-ink-muted); margin-top: 2.5mm; line-height: 1.6; }
+
+  .shot { width: 100%; border: 1px solid var(--line); border-radius: 2mm; }
+
+  /* ============ CERTS ============ */
+  .cert-list { border-top: 1px solid var(--line); }
+  .cert-row { display: flex; gap: 6mm; padding: 2.8mm 0; border-bottom: 1px solid var(--line); font-size: 9.5pt; }
+  .cert-row .d { width: 22mm; flex-shrink: 0; font-family: "Noto Sans Mono", monospace; font-size: 8.5pt; color: var(--teal); }
+
+  .contact-band {
+    background: var(--ink); color: var(--on-ink);
+    margin: 10mm -18mm -16mm;
+    padding: 10mm 18mm 14mm;
+  }
+  .contact-band h2 { font-family: "Noto Serif CJK JP", serif; font-size: 16pt; margin-bottom: 3mm; }
+  .contact-band p { font-size: 9.5pt; color: var(--on-ink-muted); line-height: 1.8; margin-bottom: 5mm; }
+  .contact-band .link-row a { font-size: 10pt; }
+
+  .foot {
+    position: absolute; bottom: 8mm; left: 18mm; right: 18mm;
+    display: flex; justify-content: space-between;
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 7pt; color: var(--text-muted);
+    border-top: 1px solid var(--line); padding-top: 2.5mm;
+  }
+  .cover .foot, .on-ink .foot { color: var(--on-ink-muted); border-color: var(--line-on-ink); }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1: COVER ================= -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-kicker">Software &amp; AI Engineer Portfolio</div>
+    <h1>TIN YE LIN</h1>
+    <div class="reading">ティン イェ リン</div>
+    <p class="tagline">
+      ミャンマーで<strong>通信インフラエンジニア</strong>として現場を支えた経験を土台に、
+      日本で<strong>AI・ソフトウェア開発</strong>を学び直しました。
+      音声解析、Webアプリケーション、機械学習まで、手を動かして形にしてきたプロジェクトを紹介します。
+    </p>
+    <img class="cover-photo" src="images/profile.jpg" alt="Tin Ye Lin">
+  </div>
+
+  <svg class="cover-wave" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true" style="height:28mm;">
+    <defs>
+      <linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#2C9298"/><stop offset="1" stop-color="#E2954D"/>
+      </linearGradient>
+    </defs>
+    <polyline points="0,80 60,80 60,40 120,40 120,120 180,120 180,60 240,60 240,95 300,95 300,50 360,50 360,80 420,80" fill="none" stroke="url(#wg)" stroke-width="2"/>
+    <path d="M420,80 C 460,20 500,140 540,80 C 580,20 620,140 660,80 C 700,20 740,140 780,80 C 820,30 860,120 900,80" fill="none" stroke="url(#wg)" stroke-width="2"/>
+    <text x="940" y="98" font-family="monospace" font-size="60" fill="url(#wg)">&lt;/&gt;</text>
+  </svg>
+
+  <div class="cover-links">
+    <div class="label">Links — すべてクリックで開けます</div>
+    <div class="link-row"><span class="k">ポートフォリオサイト</span><a href="https://tyl-jp.github.io/myportfolio/">https://tyl-jp.github.io/myportfolio/</a></div>
+    <div class="link-row"><span class="k">GitHub</span><a href="https://github.com/TYL-jp">https://github.com/TYL-jp</a></div>
+    <div class="link-row"><span class="k">メール</span><a href="mailto:tinyelin94jp@gmail.com">tinyelin94jp@gmail.com</a></div>
+  </div>
+  <div class="foot"><span>TIN YE LIN — PORTFOLIO</span><span>1 / 4</span></div>
+</div>
+
+<!-- ================= PAGE 2: ABOUT + SKILLS ================= -->
+<div class="page">
+  <div class="pad">
+    <div class="eyebrow">About</div>
+    <h2 class="sec">通信の現場から、AI開発の世界へ</h2>
+    <p class="lead">2つの現場で培った「運用力」と「学ぶ力」を、ソフトウェアエンジニアとしての土台にしています。</p>
+
+    <div class="about-copy">
+      <p>
+        ミャンマーの大学で英語学を修めた後、<strong>Terabit Wave Telecommunication</strong>社にて
+        Huawei PSTN通信インフラプロジェクトのサイトエンジニアとして従事。MSAN通信設備の運用・保守、
+        障害の一次切り分け、AutoCADによる設計図の修正、海外顧客との英語での技術対応を担当しました。
+      </p>
+      <p>
+        より専門的な開発スキルを身につけるため来日し、日本電子専門学校AIシステム学科でJava・Python・
+        JavaScript・Web開発・機械学習を学習。卒業研究ではチーム開発でPythonを用いた音声特徴量解析システムを
+        設計・実装しました。現在は半導体製造装置に関する技術職に従事しながら、ソフトウェアエンジニアとしての
+        キャリアを模索しています。
+      </p>
+      <p>
+        <strong>今後のビジョン：</strong>新しい技術を学ぶことが好きで、自ら調査・検証しながら課題を解決することを
+        得意としています。通信インフラと日本での学びの両方を活かし、ソフトウェアエンジニアとして技術力を高め、
+        チームに貢献できるエンジニアを目指しています。
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-row"><div class="tl-date">2013–2017</div><div><div class="tl-title">Mandalay University of Distance Education</div><div class="tl-sub">英語学科 卒業</div></div></div>
+      <div class="tl-row"><div class="tl-date">2018–2019</div><div><div class="tl-title">Terabit Wave Telecommunication Co., Ltd.</div><div class="tl-sub">通信インフラエンジニア（Huawei PSTNプロジェクト サイトエンジニア）</div></div></div>
+      <div class="tl-row"><div class="tl-date">2022–2024</div><div><div class="tl-title">ヒューマンアカデミー日本語学校</div><div class="tl-sub">来日・日本語習得（N2取得）</div></div></div>
+      <div class="tl-row"><div class="tl-date">2024–2026</div><div><div class="tl-title">日本電子専門学校 AIシステム学科</div><div class="tl-sub">Java / Python / Web開発 / 機械学習を学習</div></div></div>
+      <div class="tl-row"><div class="tl-date">2026–現在</div><div><div class="tl-title">株式会社アルプスビジネスサービス</div><div class="tl-sub">半導体製造技術者として勤務中</div></div></div>
+    </div>
+
+    <div class="skills-band">
+      <div class="eyebrow" style="margin-bottom:4mm;">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>言語</h3>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">C</span><span class="tag">SQL</span><span class="tag">HTML / CSS</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>フレームワーク・ライブラリ</h3>
+          <div class="tags"><span class="tag">Flask</span><span class="tag">Jakarta EE</span><span class="tag">JSP / Servlet</span><span class="tag">TensorFlow</span><span class="tag">scikit-learn</span><span class="tag">librosa</span><span class="tag">parselmouth</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>ツール・環境</h3>
+          <div class="tags"><span class="tag">Git</span><span class="tag">Oracle</span><span class="tag">SQLite</span><span class="tag">Jupyter</span><span class="tag">Linux</span><span class="tag">AutoCAD</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>語学</h3>
+          <div class="tags"><span class="tag">日本語（N2）</span><span class="tag">英語（TOEIC 825）</span><span class="tag">ビルマ語（母語）</span></div>
+        </div>
+        <div class="skill-group">
+          <h3>通信インフラ実務</h3>
+          <div class="tags"><span class="tag">MSAN運用・保守</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="color:#9FB0B3;border-color:rgba(243,245,241,0.16);"><span>TIN YE LIN — PORTFOLIO</span><span>2 / 4</span></div>
+</div>
+
+<!-- ================= PAGE 3: PROJECT 1 ================= -->
+<div class="page">
+  <div class="pad">
+    <div class="eyebrow">Projects 01</div>
+    <h2 class="sec">裏声のスコアリングシステム</h2>
+    <p class="lead">卒業研究 ・ チーム開発（4名）・ 日本電子専門学校 AIシステム科</p>
+
+    <div class="project" style="border:none;">
+      <p class="desc">
+        <strong>目的：</strong>カラオケ文化のように「声を改善し上手に歌いたい」というニーズに対し、
+        良質な発声フィードバックをいつでも得られる環境を提供すること。
+        裏声を録音するだけで、純度・力みの無さ・息漏れの少なさ・響きの豊かさ・安定性の5指標をAIが数値化し、
+        レーダーチャートと改善アドバイスを提示するボイストレーニング支援システムです。
+      </p>
+      <p class="desc">
+        <strong>担当：</strong>システム設計（要件定義）、データ前処理パイプラインの設計・実装、
+        音響特徴量抽出によるデータセット作成、FNN回帰モデルの実装。
+      </p>
+      <ul class="hl">
+        <li>Parselmouthで22種の音響特徴量を取得し、うち14種をFNNの学習に採用（H1-H2, HNR, CPP, Jitter, Shimmer等）</li>
+        <li>ノイズ除去→無音区間除去→0.5秒の安定区間抽出という前処理パイプラインを構築</li>
+        <li>データセットは計166件（CCMUSIC Datasetのu母音裏声119件＋チーム独自録音47件）</li>
+        <li>評価指標ごとに小規模FNN（隠れ層2層・64/32次元、ReLU、Adam、MAE損失）を5つ並列学習、400エポック</li>
+        <li>結果：MAEは純度7.79・力みの無さ9.89・息漏れの少なさ5.77・響きの豊かさ7.94・安定性5.91（100点満点中）</li>
+        <li>Flask＋SQLite3のサーバーと、録音・分析・レーダーチャート表示までを行うWebフロントエンドを統合</li>
+      </ul>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">Parselmouth</span>
+        <span class="chip">Flask</span><span class="chip">SQLite3</span><span class="chip">JavaScript</span>
+      </div>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+          <defs>
+            <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 z" fill="#9FB0B3"/>
+            </marker>
+          </defs>
+          <g font-family="'Noto Sans CJK JP', sans-serif" font-size="13" fill="#F3F5F1">
+            <rect x="10" y="80" width="100" height="46" rx="4" fill="none" stroke="#2C9298" stroke-width="1.5"/>
+            <text x="60" y="108" text-anchor="middle">録音</text>
+            <rect x="140" y="80" width="110" height="46" rx="4" fill="none" stroke="#2C9298" stroke-width="1.5"/>
+            <text x="195" y="100" text-anchor="middle">前処理</text>
+            <text x="195" y="116" text-anchor="middle" font-size="9.5" fill="#9FB0B3">ノイズ除去/区間抽出</text>
+            <rect x="280" y="80" width="110" height="46" rx="4" fill="none" stroke="#2C9298" stroke-width="1.5"/>
+            <text x="335" y="100" text-anchor="middle">特徴量抽出</text>
+            <text x="335" y="116" text-anchor="middle" font-size="9.5" fill="#9FB0B3">Parselmouth・14種</text>
+            <rect x="420" y="30" width="120" height="60" rx="4" fill="none" stroke="#E2954D" stroke-width="1.5"/>
+            <text x="480" y="56" text-anchor="middle">FNN ×5</text>
+            <text x="480" y="74" text-anchor="middle" font-size="9.5" fill="#9FB0B3">指標ごとに並列推定</text>
+            <rect x="420" y="120" width="120" height="60" rx="4" fill="none" stroke="#2C9298" stroke-width="1.5"/>
+            <text x="480" y="146" text-anchor="middle">スコア</text>
+            <text x="480" y="164" text-anchor="middle" font-size="9.5" fill="#9FB0B3">レーダーチャート</text>
+          </g>
+          <path d="M110,103 L140,103" stroke="#9FB0B3" stroke-width="1.4" marker-end="url(#ar)"/>
+          <path d="M250,103 L280,103" stroke="#9FB0B3" stroke-width="1.4" marker-end="url(#ar)"/>
+          <path d="M390,95 L420,70" stroke="#9FB0B3" stroke-width="1.4" marker-end="url(#ar)"/>
+          <path d="M480,90 L480,120" stroke="#9FB0B3" stroke-width="1.4" marker-end="url(#ar)"/>
+        </svg>
+        <div class="diagram-caption">SYSTEM FLOW — 録音音声を前処理し、Parselmouthで14種の音響特徴量を抽出後、5つのFNNで並列にスコアを推定する構成</div>
+      </div>
+
+      <div class="p-links" style="margin-top:4mm;">
+        <a class="primary" href="https://github.com/TYL-jp/falsetto-scoring-system">GitHub&nbsp;&nbsp;<span class="u">github.com/TYL-jp/falsetto-scoring-system</span></a>
+        <a href="https://tyl-jp.github.io/myportfolio/projects/voice-scoring/demo/index.html">UIデモ&nbsp;&nbsp;<span class="u">tyl-jp.github.io/myportfolio/projects/voice-scoring/demo/</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>TIN YE LIN — PORTFOLIO</span><span>3 / 4</span></div>
+</div>
+
+<!-- ================= PAGE 4: PROJECTS 2-3 + CERTS + CONTACT ================= -->
+<div class="page">
+  <div class="pad">
+    <div class="eyebrow">Projects 02 — 03</div>
+
+    <div class="project" style="padding-top:0;">
+      <span class="p-tag">個人開発</span>
+      <h3>オリジナル描画アプリケーション</h3>
+      <p class="desc">
+        Canvas APIを用いたレイヤー機能付きのお絵かきアプリ。レイヤーの追加・削除・並び替え・改名、
+        透明オーバーレイキャンバスによる図形のライブプレビュー、レイヤーごとのUndo/Redo、PNG書き出しを実装。
+        クリック（選択）とダブルクリック（改名）の競合をsetTimeoutで解決しました。
+      </p>
+      <div class="chips"><span class="chip">HTML5 Canvas</span><span class="chip">JavaScript</span><span class="chip">CSS (Flexbox)</span></div>
+      <div class="p-links">
+        <a class="primary" href="https://github.com/TYL-jp/drawing-app">GitHub&nbsp;&nbsp;<span class="u">github.com/TYL-jp/drawing-app</span></a>
+        <a href="https://tyl-jp.github.io/drawing-app/">ライブデモ&nbsp;&nbsp;<span class="u">tyl-jp.github.io/drawing-app/</span></a>
+      </div>
+    </div>
+
+    <div class="project">
+      <span class="p-tag">個人開発</span>
+      <h3>カフェ注文システム</h3>
+      <p class="desc">
+        カフェの店内注文を想定したWebアプリ。8商品の個数入力フォームとバリデーション、注文ごとの履歴テーブルの
+        DOM生成、複数回の注文管理、会計処理・状態リセットまでをJavaScriptのみで実装しています。
+      </p>
+      <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+      <div class="p-links">
+        <a class="primary" href="https://github.com/TYL-jp/cafe-order-system">GitHub&nbsp;&nbsp;<span class="u">github.com/TYL-jp/cafe-order-system</span></a>
+        <a href="https://tyl-jp.github.io/cafe-order-system/">ライブデモ&nbsp;&nbsp;<span class="u">tyl-jp.github.io/cafe-order-system/</span></a>
+      </div>
+    </div>
+
+    <div style="margin-top:6mm;">
+      <div class="eyebrow">Certifications</div>
+      <div class="cert-list">
+        <div class="cert-row"><span class="d">2024.05</span><span>TOEIC 公開テスト スコア825点</span></div>
+        <div class="cert-row"><span class="d">2025.05</span><span>Oracle Certified Java Programmer, Silver SE 11</span></div>
+        <div class="cert-row"><span class="d">2025.07</span><span>日本語能力試験 N2</span></div>
+        <div class="cert-row"><span class="d">2025.08</span><span>Python3エンジニア認定基礎試験 ／ データ分析試験</span></div>
+        <div class="cert-row"><span class="d">2025.12</span><span>AI検定</span></div>
+        <div class="cert-row"><span class="d">2026.06</span><span>C言語プログラミング能力認定試験 2級</span></div>
+      </div>
+    </div>
+
+    <div class="contact-band">
+      <div class="eyebrow">Contact</div>
+      <h2>お気軽にご連絡ください</h2>
+      <p>ソフトウェアエンジニアとしての新しいキャリアを探しています。ご質問やお仕事のご相談など、お気軽にご連絡ください。</p>
+      <div class="link-row"><span class="k">メール</span><a href="mailto:tinyelin94jp@gmail.com">tinyelin94jp@gmail.com</a></div>
+      <div class="link-row"><span class="k">ポートフォリオ</span><a href="https://tyl-jp.github.io/myportfolio/">https://tyl-jp.github.io/myportfolio/</a></div>
+      <div class="link-row"><span class="k">GitHub</span><a href="https://github.com/TYL-jp">https://github.com/TYL-jp</a></div>
+    </div>
+  </div>
+  <div class="foot" style="color:#9FB0B3;border-color:rgba(243,245,241,0.16);"><span>TIN YE LIN — PORTFOLIO</span><span>4 / 4</span></div>
+</div>
+
+</body>
+</html>
