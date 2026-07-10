@@ -30,9 +30,11 @@
     position: relative;
     overflow: hidden;
     background: var(--paper);
+    display: flex;
+    flex-direction: column;
   }
   .page:last-child { page-break-after: auto; }
-  .pad { padding: 16mm 18mm; }
+  .pad { padding: 14mm 18mm 0; display: flex; flex-direction: column; flex: 1; }
 
   .serif { font-family: "Noto Serif CJK JP", serif; }
   .mono { font-family: "Noto Sans Mono", "DejaVu Sans Mono", monospace; }
@@ -115,12 +117,12 @@
   .lead { color: var(--text-muted); font-size: 10pt; margin-bottom: 8mm; }
 
   .about-flex { display: flex; gap: 8mm; }
-  .about-copy { flex: 1; font-size: 9.5pt; line-height: 1.85; color: var(--text-muted); }
-  .about-copy p { margin-bottom: 4mm; }
+  .about-copy { font-size: 9pt; line-height: 1.7; color: var(--text-muted); }
+  .about-copy p { margin-bottom: 3.2mm; }
   .about-copy strong { color: var(--text-main); }
 
-  .timeline { border-top: 1px solid var(--line); margin-top: 4mm; }
-  .tl-row { display: flex; gap: 6mm; padding: 3.2mm 0; border-bottom: 1px solid var(--line); }
+  .timeline { border-top: 1px solid var(--line); margin-top: 3mm; }
+  .tl-row { display: flex; gap: 6mm; padding: 2.6mm 0; border-bottom: 1px solid var(--line); }
   .tl-date { width: 26mm; flex-shrink: 0; font-family: "Noto Sans Mono", monospace; font-size: 8.5pt; color: var(--teal); padding-top: 0.5mm; }
   .tl-title { font-weight: 700; font-size: 9.5pt; margin-bottom: 0.5mm; }
   .tl-sub { font-size: 8.5pt; color: var(--text-muted); }
@@ -128,22 +130,23 @@
   .skills-band {
     background: var(--ink);
     color: var(--on-ink);
-    margin: 8mm -18mm 0;
-    padding: 8mm 18mm;
+    margin: 6mm -18mm 0;
+    margin-top: auto;
+    padding: 7mm 18mm 8mm;
   }
-  .skills-grid { display: flex; flex-wrap: wrap; gap: 6mm 10mm; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 4.5mm 9mm; }
   .skill-group { min-width: 50mm; }
   .skill-group h3 {
     font-family: "Noto Sans Mono", monospace;
-    font-size: 8.5pt; font-weight: 500;
+    font-size: 8pt; font-weight: 500;
     color: var(--amber-soft);
-    margin-bottom: 2.5mm; letter-spacing: 0.03em;
+    margin-bottom: 2mm; letter-spacing: 0.03em;
   }
-  .tags { display: flex; flex-wrap: wrap; gap: 1.6mm; max-width: 76mm; }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.5mm; max-width: 76mm; }
   .tag {
     font-family: "Noto Sans Mono", monospace;
-    font-size: 7.5pt;
-    padding: 1.1mm 2.6mm;
+    font-size: 7.2pt;
+    padding: 1mm 2.4mm;
     border: 1px solid var(--line-on-ink);
     border-radius: 1mm;
     color: var(--on-ink-muted);
@@ -187,17 +190,25 @@
 
   /* ============ CERTS ============ */
   .cert-list { border-top: 1px solid var(--line); }
-  .cert-row { display: flex; gap: 6mm; padding: 2.8mm 0; border-bottom: 1px solid var(--line); font-size: 9.5pt; }
+  .cert-row { display: flex; gap: 6mm; padding: 2.3mm 0; border-bottom: 1px solid var(--line); font-size: 9pt; }
   .cert-row .d { width: 22mm; flex-shrink: 0; font-family: "Noto Sans Mono", monospace; font-size: 8.5pt; color: var(--teal); }
 
   .contact-band {
     background: var(--ink); color: var(--on-ink);
-    margin: 10mm -18mm -16mm;
-    padding: 10mm 18mm 14mm;
+    margin: 7mm -18mm 0;
+    margin-top: auto;
+    padding: 8mm 18mm 8mm;
   }
-  .contact-band h2 { font-family: "Noto Serif CJK JP", serif; font-size: 16pt; margin-bottom: 3mm; }
-  .contact-band p { font-size: 9.5pt; color: var(--on-ink-muted); line-height: 1.8; margin-bottom: 5mm; }
+  .contact-band h2 { font-family: "Noto Serif CJK JP", serif; font-size: 15pt; margin-bottom: 2.5mm; }
+  .contact-band p { font-size: 9pt; color: var(--on-ink-muted); line-height: 1.7; margin-bottom: 4mm; max-width: 150mm; }
   .contact-band .link-row a { font-size: 10pt; }
+  .band-foot {
+    display: flex; justify-content: space-between;
+    font-family: "Noto Sans Mono", monospace;
+    font-size: 7pt; color: var(--on-ink-muted);
+    border-top: 1px solid var(--line-on-ink);
+    padding-top: 2.5mm; margin-top: 7mm;
+  }
 
   .foot {
     position: absolute; bottom: 8mm; left: 18mm; right: 18mm;
@@ -241,8 +252,8 @@
     <div class="link-row"><span class="k">ポートフォリオサイト</span><a href="https://tyl-jp.github.io/myportfolio/">https://tyl-jp.github.io/myportfolio/</a></div>
     <div class="link-row"><span class="k">GitHub</span><a href="https://github.com/TYL-jp">https://github.com/TYL-jp</a></div>
     <div class="link-row"><span class="k">メール</span><a href="mailto:tinyelin94jp@gmail.com">tinyelin94jp@gmail.com</a></div>
+    <div class="band-foot"><span>TIN YE LIN — PORTFOLIO</span><span>1 / 4</span></div>
   </div>
-  <div class="foot"><span>TIN YE LIN — PORTFOLIO</span><span>1 / 4</span></div>
 </div>
 
 <!-- ================= PAGE 2: ABOUT + SKILLS ================= -->
@@ -303,9 +314,9 @@
           <div class="tags"><span class="tag">MSAN運用・保守</span></div>
         </div>
       </div>
+      <div class="band-foot"><span>TIN YE LIN — PORTFOLIO</span><span>2 / 4</span></div>
     </div>
   </div>
-  <div class="foot" style="color:#9FB0B3;border-color:rgba(243,245,241,0.16);"><span>TIN YE LIN — PORTFOLIO</span><span>2 / 4</span></div>
 </div>
 
 <!-- ================= PAGE 3: PROJECT 1 ================= -->
@@ -432,9 +443,9 @@
       <div class="link-row"><span class="k">メール</span><a href="mailto:tinyelin94jp@gmail.com">tinyelin94jp@gmail.com</a></div>
       <div class="link-row"><span class="k">ポートフォリオ</span><a href="https://tyl-jp.github.io/myportfolio/">https://tyl-jp.github.io/myportfolio/</a></div>
       <div class="link-row"><span class="k">GitHub</span><a href="https://github.com/TYL-jp">https://github.com/TYL-jp</a></div>
+      <div class="band-foot"><span>TIN YE LIN — PORTFOLIO</span><span>4 / 4</span></div>
     </div>
   </div>
-  <div class="foot" style="color:#9FB0B3;border-color:rgba(243,245,241,0.16);"><span>TIN YE LIN — PORTFOLIO</span><span>4 / 4</span></div>
 </div>
 
 </body>

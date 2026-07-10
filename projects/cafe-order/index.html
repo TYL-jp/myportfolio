@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <title>カフェ注文システム</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <h1>カフェの注文システム</h1>
+    <form name="orderForm" id="orderForm">
+    <div class="product">
+        <img src="images/burma-bombe.jpg" alt="ビルマ・ボンブ" />
+        <p class="product-name">ビルマ・ボンブ  - 600円</p>
+        <input type="number" name="qty0" value="0" min="0" />
+    </div>
+    <div class="product">
+        <img src="images/burmese-semolina-cake.jpg" alt="ビルマ・セモリーナー・ケーキ" />
+        <p class="product-name">ビルマ・セモリーナー・ケーキ - 550円</p>
+        <input type="number" name="qty1" value="0" min="0" />
+    </div>
+    <div class="product">
+        <img src="images/latte.jpg" alt="カフェラテ" />
+        <p class="product-name">カフェラテ - 520円</p>
+        <input type="number" name="qty2" value="0" min="0" />
+    </div>
+    <div class="product">
+        <img src="images/mango-ice-cake.jpg" alt="マンゴー・アイス・ケーキ" />
+        <p class="product-name">マンゴー・アイス・ケーキ - 800円</p>
+        <input type="number" name="qty3" value="0" min="0" />
+    </div>
+    <div class="product">
+        <img src="images/milk-kulfi.jpg" alt="ミルク・クルフィ" />
+        <p class="product-name">ミルク・クルフィ - 680円</p>
+        <input type="number" name="qty4" value="0" min="0" />
+    </div>
+    <div class="product">
+        <img src="images/MyaZeDiCoffee.jpg" alt="ミャゼディコーヒー" />
+        <p class="product-name">ミャゼディコーヒー - 580円</p>
+        <input type="number" name="qty5" value="0" min="0" />
+    </div>
+    <div class="product">
+        <img src="images/Mohinga.jpg" alt="モヒンガー" />
+        <p class="product-name">モヒンガー - 1080円</p>
+        <input type="number" name="qty6" value="0" min="0" />
+    </div>
+    <div class="product">
+        <img src="images/sandwich.jpg" alt="サンドイッチ" />
+        <p class="product-name">サンドイッチ - 660円</p>
+        <input type="number" name="qty7" value="0" min="0" />
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="orderButton">注文</button>
+        <button type="button" id="accountButton">会計</button>
+    </div>
+    </form>
+
+    <h2>注文履歴</h2>
+    <div id="historyContainer"></div>
+
+    <div id="grandTotalDisplay">合計: 0円</div>
+
+    <footer>
+        <p>Copyright &copy; 2025 TIN YE LIN (24CA0229), All rights reserved.</p>
+    </footer>
+
+    <script src="order.js"></script>
+</body>
+</html>

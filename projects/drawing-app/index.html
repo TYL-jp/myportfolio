@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリジナル描画アプリケーションの作成</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="main-content">
+            <div id="toolbar">
+                <div class="tool-group">
+                    <input type="color" id="colorPicker" value="#000000" title="色">
+                    <label for="lineWidth">サイズ: <input type="number" id="lineWidth" value="5" min="1" max="200"></label>
+                </div>
+                <div class="tool-group">
+                    <button class="tool-btn" data-tool="pen" title="ペン">✏️</button>
+                    <button class="tool-btn" data-tool="eraser" title="消しゴム">🧼</button>
+                </div>
+                <div class="tool-group">
+                    <button class="tool-btn" data-tool="line" title="直線">📏</button>
+                    <button class="tool-btn" data-tool="rect" title="四角形">⬛</button>
+                    <button class="tool-btn" data-tool="circle" title="円">⚪</button>
+                </div>
+                <div class="tool-group">
+                    <button id="undoBtn" title="元に戻す">↩️</button>
+                    <button id="redoBtn" title="やり直し">↪️</button>
+                    <button id="clearBtn" title="レイヤーを消去">🗑️</button>
+                    <button id="saveBtn" title="画像を保存">💾</button>
+                </div>
+            </div>
+            <div id="canvas-container">
+                </div>
+        </div>
+
+        <div id="layers-panel">
+            <h3>レイヤー</h3>
+            <div id="layer-controls">
+                <button id="addLayerBtn">＋ 追加</button>
+                <button id="deleteLayerBtn">－ 削除</button>
+                <button id="moveLayerUpBtn">↑</button>
+                <button id="moveLayerDownBtn">↓</button>
+            </div>
+            <ul id="layer-list">
+                </ul>
+        </div>
+    </div>
+
+    <script src="js/script.js" defer></script>
+</body>
+</html>

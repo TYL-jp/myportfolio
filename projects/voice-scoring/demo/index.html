@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY JAKOSY — UIデモ</title>
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Chart.js for radar chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      .demo-banner {
+        width: 95%;
+        max-width: 1400px;
+        background: #fff3e0;
+        border: 1px solid #fb8c00;
+        color: #e65100;
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        text-align: center;
+        margin-bottom: 12px;
+        flex-shrink: 0;
+      }
+    </style>
+    <!-- Scripts -->
+    <script src="js/charts.js"></script>
+    <script src="js/recorder.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+
+    <!-- Top Title -->
+    <h2 class="program-title">裏声スコアリングシステム - MY JAKOSY - </h2>
+
+    <div class="demo-banner">
+      ポートフォリオ用UIデモです。録音はブラウザ内で動作しますが、AI分析はサーバー（Flask＋TensorFlow）が必要なため、サンプルスコアを表示します。
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div class="score-display">
+                総合スコア: <span id="res-total" class="score-number">-</span>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="resultChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+
+            <button id="mic-btn" class="mic-btn">
+                <span class="material-icons">mic</span>
+            </button>
+
+            <audio id="audio-playback" class="audio-player" controls aria-disabled="true"></audio>
+
+            <div class="controls-row">
+                <div id="timer" class="timer-circle" style="opacity: 0;">5</div>
+
+                <button id="btn-reset" class="action-btn" disabled>やり直し</button>
+                <button id="btn-analyze" class="action-btn" disabled>分析</button>
+            </div>
+
+            <p id="analyze-error">　</p>
+
+            <div id="res-advice" class="advice-container">
+                <div id="info-text">
+                    録音ボタンを押して、裏声を出してください。
+                </div>
+
+                <div id="progress-area" style="display: none; width: 80%;">
+                    <div class="progress-bar-bg">
+                        <div id="progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+                    </div>
+                    <div id="progress-status-text">準備中...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
